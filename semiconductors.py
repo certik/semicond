@@ -1,7 +1,7 @@
 #from scipy.integrate import odeint
 from numpy import arange, pi, arctan, array, zeros
 atan = arctan
-from pylab import plot, show, legend
+from pylab import plot, savefig, legend
 
 def euler(derivs, y_0, t_list):
     """
@@ -84,4 +84,4 @@ plot(t, p, "b-", label="p")
 plot(t, phi, "k-", label="phi")
 plot(t, C(t), "g+", label="C")
 legend()
-show()
+savefig("sol.png")
