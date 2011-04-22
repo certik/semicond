@@ -69,19 +69,21 @@ def deriv(y, t):
     yp[4] = y[5]
     return yp
 
-t = arange(0, 300*nm, 300*nm/2000)
+t = arange(0, 200*nm, 300*nm/2000)
 _eps = N_A/1.e3
-y = euler(deriv, [0., 0., N_A, 0., 0., 0.], t)
+# The n(0) condition is a problem, as we don't now it, and if we set it to 0,
+# it will always be 0:
+y = euler(deriv, [-1e-20, 0., N_A, 0., 0., 0.], t)
 n = y[:, 0]
 n_p = y[:, 1]
 p = y[:, 2]
 p_p = y[:, 3]
 phi = y[:, 4]
 phi_p = y[:, 5]
-plot(t, n, "r-", label="n")
-plot(t, p, "b-", label="p")
+plot(t, n, "r-", lw=2, label="n")
+plot(t, p, "b-", lw=2, label="p")
 #plot(t, p_p, "bx", label="p_p")
 plot(t, phi, "k-", label="phi")
-plot(t, C(t), "g+", label="C")
+plot(t, C(t), "g-", lw=2, label="C")
 legend()
 savefig("sol.png")
