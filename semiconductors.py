@@ -61,7 +61,7 @@ def C(t):
 
 def deriv(y, t):
     yp = [0, 0, 0, 0, 0, 0]
-    yp[5] = -q/eps * (y[2] - y[0] + C(t))
+    yp[5] = q/eps * (y[2] - y[0] + C(t))
     yp[0] = y[1]
     yp[1] = R/D_n+mu_n/D_n * (y[1]*y[5]+y[0]*yp[5])
     yp[2] = y[3]
@@ -69,7 +69,7 @@ def deriv(y, t):
     yp[4] = y[5]
     return yp
 
-t = arange(0, 30*nm, 300*nm/200)
+t = arange(0, 300*nm, 300*nm/2000)
 _eps = N_A/1.e3
 y = euler(deriv, [0., 0., N_A, 0., 0., 0.], t)
 n = y[:, 0]
